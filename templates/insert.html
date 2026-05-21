@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="card shadow p-4 mx-auto border" style="max-width: 600px;">
+        <h3 class="text-primary mb-4 text-center">Adăugare Date: {{ table_name }}</h3>
+
+        <div class="alert alert-warning py-2 px-3 small border-0 shadow-sm mb-4">
+            <i class="bi bi-exclamation-triangle-fill me-1"></i>
+            <strong>Notă:</strong> Datele introduse trebuie să respecte constrângerile de integritate din baza de date (formate de dată, lungimi maxime și regulile de tip <code>CHECK</code> din SQL). Câmpurile marcate cu <strong>*</strong> sunt obligatorii.
+        </div>
+
+        <form method="POST">
+            {% for col in columns %}
+            <div class="mb-3">
+                <label class="form-label fw-bold small text-secondary">{{ col }}</label>
+                <input type="text" name="{{ col.replace('*', '') }}" value="{{ saved_data[col.replace('*', '')] if saved_data and saved_data[col.replace('*', '')] is not none else '' }}" class="form-control">
+            </div>
+            {% endfor %}
+            <div class="mt-4">
+                <button type="submit" class="btn btn-success w-100 mb-2 py-2 fw-bold">ADAUGĂ</button>
+                <a href="/table/{{ table_name }}" class="btn btn-outline-secondary w-100 py-2">ANULEAZĂ</a>
+            </div>
+        </form>
+    </div>
+{% endblock %}

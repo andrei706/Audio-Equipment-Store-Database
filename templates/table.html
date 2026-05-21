@@ -1,8 +1,14 @@
 {% extends "layout.html" %}
 {% block content %}
     <div class="card shadow-sm mb-4 p-3 d-flex flex-column flex-md-row justify-content-between align-items-center">
-        <h2 class="h4 m-0 text-primary mb-3 mb-md-0">{{ table_name }}</h2>
-        {% if not is_query %}
+    <h2 class="h4 m-0 text-primary mb-3 mb-md-0">{{ table_name }}</h2>
+
+    {% if not is_query %}
+    <div class="d-flex align-items-center gap-3">
+        {% if not is_view %}
+        <a href="/add/{{ table_name }}" type="button" class="btn btn-success d-flex">Adaugă înregistrare</a>
+        {% endif %}
+
         <form class="d-flex align-items-center sort-controls" action="/table/{{ table_name }}" method="GET">
             <span class="me-2 text-muted fw-bold small">SORTEAZĂ:</span>
             <select name="sort" class="form-select form-select-sm me-2" onchange="this.form.submit()" style="width: auto;">
@@ -16,8 +22,9 @@
                 <option value="DESC" {% if current_dir == 'DESC' %}selected{% endif %}>Descrescător</option>
             </select>
         </form>
-        {% endif %}
     </div>
+    {% endif %}
+</div>
     <div class="table-responsive bg-white p-3 rounded shadow border">
         <table class="table table-hover align-middle">
             <thead class="table-dark">
