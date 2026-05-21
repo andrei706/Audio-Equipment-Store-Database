@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="card shadow-sm mb-4 p-3 d-flex flex-column flex-md-row justify-content-between align-items-center">
+        <h2 class="h4 m-0 text-primary mb-3 mb-md-0">{{ table_name }}</h2>
+        {% if not is_query %}
+        <form class="d-flex align-items-center sort-controls" action="/table/{{ table_name }}" method="GET">
+            <span class="me-2 text-muted fw-bold small">SORTEAZĂ:</span>
+            <select name="sort" class="form-select form-select-sm me-2" onchange="this.form.submit()" style="width: auto;">
+                <option value="">-- Coloană --</option>
+                {% for col in columns %}
+                <option value="{{ col }}" {% if current_sort == col %}selected{% endif %}>{{ col }}</option>
+                {% endfor %}
+            </select>
+            <select name="dir" class="form-select form-select-sm" onchange="this.form.submit()" style="width: auto;">
+                <option value="ASC" {% if current_dir == 'ASC' %}selected{% endif %}>Crescător</option>
+                <option value="DESC" {% if current_dir == 'DESC' %}selected{% endif %}>Descrescător</option>
+            </select>
+        </form>
+        {% endif %}
+    </div>
+    <div class="table-responsive bg-white p-3 rounded shadow border">
+        <table class="table table-hover align-middle">
+            <thead class="table-dark">
+                <tr>
+                    {% for col in columns %}<th>{{ col }}</th>{% endfor %}
+                    {% if not is_query %} <th class="text-center">Acțiuni</th> {% endif %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in data %}
+                <tr>
+                    {% for val in row %}<td>{{ val }}</td>{% endfor %}
+                    {% if not is_query %}
+                    <td class="text-center">
+                        <div class="btn-group">
+                            <a href="/edit/{{ table_name }}/{{ row[0] }}" class="btn btn-sm btn-warning">Edit</a>
+                            <a href="/delete/{{ table_name }}/{{ row[0] }}" class="btn btn-sm btn-danger" onclick="return confirm('Ștergi?')">Del</a>
+                        </div>
+                    </td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

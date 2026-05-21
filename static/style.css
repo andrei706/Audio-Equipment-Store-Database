@@ -1,0 +1,22 @@
+.navbar-brand {
+    font-weight: bold;
+    color: #00d4ff !important;
+}
+
+.card {
+    border-radius: 15px;
+    border: none;
+}
+
+.navbar-nav .btn {
+    border-width: 2px;
+    font-weight: 500;
+    transition: all 0.3s;
+    margin-top: 2px;
+}
+
+.sort-controls {
+    background: #f1f3f5;
+    padding: 10px;
+    border-radius: 8px;
+}

@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="card shadow p-4 mx-auto border" style="max-width: 600px;">
+        <h3 class="text-primary mb-4 text-center">Modificare Date: {{ table_name }}</h3>
+        <form method="POST">
+            {% for col in columns %}
+            <div class="mb-3">
+                <label class="form-label fw-bold small text-secondary">{{ col }}</label>
+                <input type="text" name="{{ col }}" value="{{ record_data[col] }}" class="form-control">
+<!--                       {% if loop.first %}readonly style="background-color: #f8f9fa;"{% endif %}>-->
+
+            </div>
+            {% endfor %}
+            <div class="mt-4">
+                <button type="submit" class="btn btn-success w-100 mb-2 py-2 fw-bold">SALVEAZĂ</button>
+                <a href="/table/{{ table_name }}" class="btn btn-outline-secondary w-100 py-2">ANULEAZĂ</a>
+            </div>
+        </form>
+    </div>
+{% endblock %}
