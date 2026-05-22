@@ -1,6 +1,6 @@
-# Audio Equipment Store – SQL Database & Management Interface
+# Headphone Online Store – SQL Database & Management Interface
 
-This repository contains a university database project that models an online store for audio equipment. The project consists of an Oracle SQL database structure and a simple web interface built with Python and Flask to manage the data.
+This repository contains a university database project that models an online store for headphones. The project consists of an Oracle SQL database structure and a simple web interface built with Python and Flask to manage the data.
 
 The complete documentation in **romanian** for this project can be found in the **`docs/`** folder:
 * **[Database Architecture](docs/Documentatie.pdf)**: Explains the table schemas, constraints, and 3NF normalization.
